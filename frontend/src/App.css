@@ -1,0 +1,738 @@
+.App {
+  text-align: center;
+}
+.Lyrics {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* div,
+button {
+  margin: 10px;
+} */
+.round-button {
+  margin: 10px;
+  box-sizing: border-box;
+  display: block;
+  width: 200px;
+  height: 200px;
+  padding-top: 14px;
+  padding-left: 8px;
+  line-height: 20px;
+  border: 6px solid #fff;
+  border-radius: 50%;
+  color: #f5f5f5;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.round-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 100, 1);
+  text-shadow: 0 0 10px rgba(255, 255, 100, 1);
+}
+
+.round-button {
+  top: 50%;
+  left: 50%;
+  margin-top: -110px;
+  margin-left: -100px;
+  position: fixed;
+}
+
+/* .fav {
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -30px;
+  position: fixed;
+} */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+body {
+  background-color: #83af9b;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked + label {
+  animation: loading-background 5s linear forwards;
+}
+input[type="checkbox"]:checked + label::after {
+  animation: loading 5s linear forwards;
+}
+
+label {
+  background-color: #fe4365;
+  cursor: pointer;
+  display: block;
+  height: -50;
+  left: 50%;
+  margin-left: -5em;
+  margin-top: -4em;
+  position: absolute;
+  text-align: center;
+  width: 10em;
+}
+label::before {
+  background-color: #ece5ce;
+  content: "";
+  display: block;
+  height: 2.6em;
+  margin: 0.2em;
+  outline: 0.4em solid #ece5ce;
+  outline-offset: 0.2em;
+  position: absolute;
+  width: 9.6em;
+}
+label::after {
+  content: "Sync Lyrics";
+  line-height: 3em;
+  position: relative;
+}
+
+@keyframes loading-background {
+  from {
+    height: 0;
+  }
+  to {
+    height: 3em;
+  }
+}
+@keyframes loading {
+  0% {
+    content: "0%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  1% {
+    content: "1%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  2% {
+    content: "2%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  3% {
+    content: "3%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  4% {
+    content: "4%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  5% {
+    content: "5%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  6% {
+    content: "6%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  7% {
+    content: "7%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  8% {
+    content: "8%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  9% {
+    content: "9%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  10% {
+    content: "10%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  11% {
+    content: "11%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  12% {
+    content: "12%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  13% {
+    content: "13%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  14% {
+    content: "14%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  15% {
+    content: "15%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  16% {
+    content: "16%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  17% {
+    content: "17%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  18% {
+    content: "18%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  19% {
+    content: "19%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  20% {
+    content: "20%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  21% {
+    content: "21%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  22% {
+    content: "22%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  23% {
+    content: "23%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  24% {
+    content: "24%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  25% {
+    content: "25%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  26% {
+    content: "26%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  27% {
+    content: "27%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  28% {
+    content: "28%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  29% {
+    content: "29%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  30% {
+    content: "30%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  31% {
+    content: "31%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  32% {
+    content: "32%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  33% {
+    content: "33%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  34% {
+    content: "34%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  35% {
+    content: "35%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  36% {
+    content: "36%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  37% {
+    content: "37%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  38% {
+    content: "38%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  39% {
+    content: "39%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  40% {
+    content: "40%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  41% {
+    content: "41%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  42% {
+    content: "42%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  43% {
+    content: "43%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  44% {
+    content: "44%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  45% {
+    content: "45%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  46% {
+    content: "46%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  47% {
+    content: "47%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  48% {
+    content: "48%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  49% {
+    content: "49%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  50% {
+    content: "50%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  51% {
+    content: "51%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  52% {
+    content: "52%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  53% {
+    content: "53%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  54% {
+    content: "54%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  55% {
+    content: "55%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  56% {
+    content: "56%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  57% {
+    content: "57%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  58% {
+    content: "58%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  59% {
+    content: "59%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  60% {
+    content: "60%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  61% {
+    content: "61%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  62% {
+    content: "62%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  63% {
+    content: "63%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  64% {
+    content: "64%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  65% {
+    content: "65%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  66% {
+    content: "66%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  67% {
+    content: "67%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  68% {
+    content: "68%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  69% {
+    content: "69%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  70% {
+    content: "70%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  71% {
+    content: "71%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  72% {
+    content: "72%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  73% {
+    content: "73%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  74% {
+    content: "74%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  75% {
+    content: "75%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  76% {
+    content: "76%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  77% {
+    content: "77%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  78% {
+    content: "78%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  79% {
+    content: "79%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  80% {
+    content: "80%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  81% {
+    content: "81%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  82% {
+    content: "82%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  83% {
+    content: "83%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  84% {
+    content: "84%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  85% {
+    content: "85%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  86% {
+    content: "86%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  87% {
+    content: "87%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  88% {
+    content: "88%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  89% {
+    content: "89%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  90% {
+    content: "90%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  91% {
+    content: "91%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  92% {
+    content: "92%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  93% {
+    content: "93%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  94% {
+    content: "94%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  95% {
+    content: "95%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  96% {
+    content: "96%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  97% {
+    content: "97%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  98% {
+    content: "98%";
+  }
+  100% {
+    content: "Loaded";
+  }
+  99% {
+    content: "99%";
+  }
+  100% {
+    content: "Synced";
+  }
+}
