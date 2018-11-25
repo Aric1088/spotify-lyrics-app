@@ -12,3 +12,139 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.image-shadow:after {
+  -webkit-transform: scale(0.95) translateY(36px) translateZ(-30px);
+  transform: scale(0.95) translateY(36px) translateZ(-30px);
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
+  opacity: 0.9;
+  content: "";
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: inherit;
+  background-size: cover;
+  z-index: -1;
+  transition: -webkit-filter 0.3s ease;
+  transition: filter 0.3s ease;
+  transition: filter 0.3s ease, -webkit-filter 0.3s ease;
+}
+
+.image-shadow {
+  margin: 20px auto;
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  display: block;
+  /* position: relative; */
+  background-size: cover;
+}
+
+.light {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  width: 600px;
+  height: 600px;
+  background-blend-mode: lighten;
+  position: fixed;
+  pointer-events: none;
+}
+
+h1 {
+  max-width: 400px;
+  width: 100%;
+  font-size: 24px;
+  text-align: center;
+  margin: 50px auto 30px;
+}
+h1 span {
+  font-size: 16px;
+  color: #666;
+  font-weight: 400;
+}
+
+.js-tilt-container {
+  transition: -webkit-transform 0.1s ease;
+  transition: transform 0.1s ease;
+  transition: transform 0.1s ease, -webkit-transform 0.1s ease;
+  -webkit-transform: rotateX(0) rotateY(0);
+  transform: rotateX(0) rotateY(0);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.leave {
+  -webkit-transform: rotateX(0) rotateY(0) !important;
+  transform: rotateX(0) rotateY(0) !important;
+  transition-timing-function: cubic-bezier(0.42, 0, 0, 1) !important;
+  transition-duration: 1.5s;
+}
+body {
+  background: url("http://thecodeplayer.com/uploads/media/geometry.png");
+  font-family: "Ubuntu", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #4f4f4f;
+}
+
+.button-container {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid #4f4f4f;
+  border-radius: 4px;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+}
+.button:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+.button:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #39bda7;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+.button:hover {
+  color: #ffffff;
+  border: 1px solid #39bda7;
+}
+.button:hover:before {
+  top: -35%;
+  background-color: #39bda7;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+.button:hover:after {
+  top: -45%;
+  background-color: #39bda7;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}

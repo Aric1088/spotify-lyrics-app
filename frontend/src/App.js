@@ -8,7 +8,7 @@ const App = () => (
   <Router>
     <div>
       <Header />
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Lyrics} />
       <Route path="/lyrics" component={Lyrics} />
       <Route path="/stream" component={Stream} />
     </div>
@@ -16,19 +16,24 @@ const App = () => (
 );
 
 const Header = () => (
-  <ul>
-    <li>
-      <Link to="/">Home</Link>
-    </li>
-    <li>
-      <Link to="/lyrics">Lyrics</Link>
-    </li>
-    <li>
-      <Link to="/stream">Stream</Link>
-    </li>
-  </ul>
+  <div>
+    <br />
+    <Link
+      style={{ textDecoration: "none", width: "150px" }}
+      className="button"
+      to="/lyrics"
+    >
+      My Lyrics
+    </Link>
+    <br />
+    <Link
+      style={{ textDecoration: "none", width: "150px" }}
+      className="button"
+      to="/stream"
+    >
+      Radio Stream
+    </Link>
+  </div>
 );
-
-const Home = () => <h2>Home</h2>;
 
 export default App;

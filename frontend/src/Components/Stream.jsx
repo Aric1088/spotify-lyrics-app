@@ -43,8 +43,8 @@ class Stream extends Component {
         marginLeft: "12px"
       });
     } else {
-      console.log(this);
       var e = document.getElementById("background");
+      console.log(this);
       e.src = "http://" + this.host + "/stream";
       e.currentTime = this.setDevice();
       e.play();

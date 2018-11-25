@@ -1,37 +1,9 @@
-.App {
-  text-align: center;
-}
 .Lyrics {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* div,
@@ -72,16 +44,9 @@ button {
   position: fixed;
 }
 
-/* .fav {
-  top: 50%;
-  left: 50%;
-  margin-top: -60px;
-  margin-left: -30px;
-  position: fixed;
-} */
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 body {
-  background-color: #83af9b;
+  background-color: white;
   color: #333;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -98,7 +63,7 @@ input[type="checkbox"]:checked + label::after {
 }
 
 label {
-  background-color: #fe4365;
+  background-color: greenyellow;
   cursor: pointer;
   display: block;
   height: -50;
@@ -110,12 +75,12 @@ label {
   width: 10em;
 }
 label::before {
-  background-color: #ece5ce;
+  background-color: whitesmoke;
   content: "";
   display: block;
   height: 2.6em;
   margin: 0.2em;
-  outline: 0.4em solid #ece5ce;
+  outline: 0.4em solid white;
   outline-offset: 0.2em;
   position: absolute;
   width: 9.6em;

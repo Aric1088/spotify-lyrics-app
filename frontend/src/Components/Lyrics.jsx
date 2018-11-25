@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ProgressBar } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-js";
+import $ from "jquery";
 const spotifyApi = new SpotifyWebApi();
 
 class Lyrics extends Component {
@@ -14,7 +15,7 @@ class Lyrics extends Component {
     this.state = {
       loggedIn: token ? true : false,
       nowPlaying: {
-        name: "Not Checked",
+        name: "Nothing is playing",
         albumArt: "",
         lyrics: [],
         time_left: 0,
@@ -37,27 +38,52 @@ class Lyrics extends Component {
   }
   hasChanged() {
     spotifyApi.getMyCurrentPlaybackState().then(response => {
-      console.log(response.item.name);
-      console.log(this.state.nowPlaying.name);
-      if (
-        response.item.name.valueOf() !== this.state.nowPlaying.name.valueOf()
-      ) {
-        this.getNowPlaying();
+      if (response.is_playing) {
+        console.log(response);
+        console.log(response.item.name);
+        console.log(this.state.nowPlaying.name);
+        if (
+          response.item.name.valueOf() !== this.state.nowPlaying.name.valueOf()
+        ) {
+          this.getNowPlaying();
+          this.setState({
+            nowPlaying: {
+              name: response.item.name,
+              artist: response.item.artists[0].name,
+              albumArt:
+                typeof response.item.album === "undefined"
+                  ? response.item.album.images[0].url
+                  : "",
+              total_time: response.item.duration_ms,
+              time_left: response.item.duration_ms - response.progress_ms,
+              lyrics: []
+            }
+          });
+        } else {
+          const { name, artist, total_time, lyrics } = this.state.nowPlaying;
+          this.setState({
+            nowPlaying: {
+              name: name,
+              artist: artist,
+              albumArt:
+                typeof response.item.album !== "undefined"
+                  ? response.item.album.images[0].url
+                  : "",
+              total_time: total_time,
+              time_left: response.item.duration_ms - response.progress_ms,
+              lyrics: lyrics
+            }
+          });
+        }
       } else {
-        const {
-          name,
-          artist,
-          albumArt,
-          total_time,
-          lyrics
-        } = this.state.nowPlaying;
+        const { artist, albumArt, total_time, lyrics } = this.state.nowPlaying;
         this.setState({
           nowPlaying: {
-            name: name,
+            name: "Nothing is Playing",
             artist: artist,
             albumArt: albumArt,
             total_time: total_time,
-            time_left: response.item.duration_ms - response.progress_ms,
+            time_left: 0,
             lyrics: lyrics
           }
         });
@@ -66,6 +92,56 @@ class Lyrics extends Component {
   }
   componentDidMount() {
     this.interval = setInterval(() => this.hasChanged(), 3000);
+    $(document).on("mousemove", function(e) {
+      $(".light").css({
+        left: e.pageX - 300,
+        top: e.pageY - 300
+      });
+    });
+
+    var el = $(".js-tilt-container");
+
+    el.on("mousemove", function(e) {
+      var _$$offset = $(this).offset(),
+        left = _$$offset.left,
+        top = _$$offset.top;
+      var cursPosX = e.pageX - left;
+      var cursPosY = e.pageY - top;
+      var cursFromCenterX = $(this).width() / 2 - cursPosX;
+      var cursFromCenterY = $(this).height() / 2 - cursPosY;
+
+      $(this).css(
+        "transform",
+        "perspective(500px) rotateX(" +
+          cursFromCenterY / 40 +
+          "deg) rotateY(" +
+          -(cursFromCenterX / 40) +
+          "deg) translateZ(10px)"
+      );
+
+      var invertedX =
+        Math.sign(cursFromCenterX) > 0
+          ? -Math.abs(cursFromCenterX)
+          : Math.abs(cursFromCenterX);
+
+      //Parallax transform on image
+      $(this)
+        .find(".js-perspective-neg")
+        .css(
+          "transform",
+          "translateY(" +
+            cursFromCenterY / 10 +
+            "px) translateX(" +
+            -(invertedX / 10) +
+            "px) scale(1.15)"
+        );
+
+      $(this).removeClass("leave");
+    });
+
+    el.on("mouseleave", function() {
+      $(this).addClass("leave");
+    });
   }
 
   componentWillUnmount() {
@@ -77,28 +153,40 @@ class Lyrics extends Component {
       .getMyCurrentPlaybackState()
       .then(response => {
         var artist = response.item.artists[0].name.replace(/[^\w\s]/g, "");
-        var song_name = response.item.name.replace(/[^\w\s]/g, "");
+        if (response.item.artists[1]) {
+          artist =
+            artist +
+            " " +
+            response.item.artists[1].name.replace(/[^\w\s]/g, "");
+        }
+        console.log(response);
+        console.log(artist);
+        var song_name = response.item.name.split("(")[0];
+        console.log(song_name);
+        song_name = response.item.name.replace(/[^\w\s]/g, "");
         song_name = song_name.split(" ");
         song_name = song_name.slice(0, 5);
         song_name = song_name.join("%20");
+        song_name = song_name.replace(",", "%20");
         console.log(song_name);
         var url =
           "http://localhost:8888/get_lyrics/?artist=" +
-          artist.replace(" ", "%20") +
+          song_name +
           "&name=" +
-          song_name;
-
-        // this.getLyrics(response.item.artists[0].name, response.item.name)
+          artist.replace(" ", "%20");
         fetch(url)
           .then(data => data.json())
           .then(data => {
             var parsed = data.lyrics.song_lyrics.split("\n");
-            console.log(parsed);
+
             this.setState({
               nowPlaying: {
                 name: response.item.name,
                 artist: response.item.artists[0].name,
-                albumArt: response.item.album.images[0].url,
+                albumArt:
+                  typeof response.item.album !== "undefined"
+                    ? response.item.album.images[0].url
+                    : "",
                 total_time: response.item.duration_ms,
                 time_left: response.item.duration_ms - response.progress_ms,
                 lyrics: parsed
@@ -112,7 +200,11 @@ class Lyrics extends Component {
 
   render() {
     const lyrics = this.state.nowPlaying.lyrics.map(item =>
-      item === "" ? <br /> : <div key={item.uniqueId}>{item}</div>
+      item === "" ? (
+        <br key={item.uniqueId} />
+      ) : (
+        <div key={item.uniqueId}>{item}</div>
+      )
     );
     return (
       <div className="Lyrics">
@@ -124,7 +216,7 @@ class Lyrics extends Component {
               onClick={() => this.getNowPlaying()}
               type="checkbox"
             />
-            <label for="mycheckbox" />
+            <label htmlFor="mycheckbox" />
           </React.Fragment>
         )}
         {!this.state.loggedIn && (
@@ -147,11 +239,18 @@ class Lyrics extends Component {
           </div>
         </div>
         <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} />
-          <br />
-          <br />
+          <div
+            className="image-shadow js-tilt-container"
+            style={{
+              backgroundImage: "url(" + this.state.nowPlaying.albumArt + ")"
+            }}
+          >
+            <br />
+            <br />
+          </div>
         </div>
         <div>Lyrics: {lyrics}</div>
+        <br />
       </div>
     );
   }

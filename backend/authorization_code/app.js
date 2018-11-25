@@ -48,9 +48,17 @@ app.get("/get_lyrics", async (req, res) => {
   if (artist === null || song_name === null) {
     res.json({ lyrics: "Error in request" });
   } else {
-    const song_lyrics = await scraper.scrape_lyrics(artist, song_name);
-
-    res.json({ lyrics: { song_lyrics } });
+    var song_lyrics = "None found";
+    scraper
+      .scrape_lyrics(artist, song_name)
+      .then(function(response) {
+        song_lyrics = response;
+        res.json({ lyrics: { song_lyrics } });
+      })
+      .catch(function(err) {
+        console.log("error has occured" + err);
+        res.json({ lyrics: song_lyrics });
+      });
   }
 });
 app.get("/login", function(req, res) {
