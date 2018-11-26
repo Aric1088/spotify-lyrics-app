@@ -58,7 +58,7 @@ class Lyrics extends Component {
                   : "",
               total_time: response.item.duration_ms,
               time_left: response.item.duration_ms - response.progress_ms,
-              lyrics: [""]
+              lyrics: ["1088"]
             }
           });
         } else {
@@ -204,7 +204,8 @@ class Lyrics extends Component {
   }
 
   render() {
-    const lyrics = this.state.nowPlaying.lyrics.map(item =>
+    const lyric = (this.state.nowPlaying.lyrics[0] === "1088") ? []: this.state.nowPlaying.lyrics ;
+    const lyrics = lyric.map(item =>
       item === "" ? (
         <br key={item.uniqueId} />
       ) : (
@@ -250,7 +251,7 @@ class Lyrics extends Component {
           </div>
         </div>
         <div>
-        {lyrics.length === 1 ? (
+        {!lyrics.length? (
   <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif"/></div>
 ) : (
   <div>Lyrics: {lyrics}</div>
