@@ -217,7 +217,7 @@ class Lyrics extends Component {
       <div className="Lyrics">
 
         {(!(this.state.loggedIn
-         || (Array.isArray(lyrics) && lyrics.length)
+         || (this.state.nowPlaying.name !== "Nothing is Playing")
          ))&& (
           <a   style={{ textDecoration: "none", width: "150px" }} className="button" href="http://ariczhuang.ddns.net:8888/login">
             Connect your Spotify
