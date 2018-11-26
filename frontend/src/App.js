@@ -16,7 +16,7 @@ const App = () => (
 );
 
 const Header = () => (
-  <div>
+  <div style={{textAlign: "center"}}>
     <br />
     <Link
       style={{ textDecoration: "none", width: "150px" }}

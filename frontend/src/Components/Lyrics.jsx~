@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { ProgressBar } from "react-bootstrap";
 import SpotifyWebApi from "spotify-web-api-js";
 import $ from "jquery";
-import LoadingDots from "./LoadingDots";
 const spotifyApi = new SpotifyWebApi();
 
 class Lyrics extends Component {
@@ -52,7 +51,7 @@ class Lyrics extends Component {
               name: response.item.name,
               artist: response.item.artists[0].name,
               albumArt:
-                typeof response.item.album.images[0] !== "undefined"
+                typeof response.item.album === "undefined"
                   ? response.item.album.images[0].url
                   : "",
               total_time: response.item.duration_ms,
@@ -67,7 +66,7 @@ class Lyrics extends Component {
               name: name,
               artist: artist,
               albumArt:
-                typeof response.item.album.images[0] !== "undefined"
+                typeof response.item.album !== "undefined"
                   ? response.item.album.images[0].url
                   : "",
               total_time: total_time,
@@ -185,7 +184,7 @@ class Lyrics extends Component {
                 name: response.item.name,
                 artist: response.item.artists[0].name,
                 albumArt:
-                  typeof response.item.album.images[0] !== "undefined"
+                  typeof response.item.album !== "undefined"
                     ? response.item.album.images[0].url
                     : "",
                 total_time: response.item.duration_ms,
@@ -207,25 +206,21 @@ class Lyrics extends Component {
         <div key={item.uniqueId}>{item}</div>
       )
     );
-    const backgroundUrl = (this.state.nowPlaying.albumArt === "") ? "https://i.imgur.com/eHsIsuU.gif" : this.state.nowPlaying.albumArt
     return (
       <div className="Lyrics">
         {this.state.loggedIn && (
-          // <React.Fragment>
-          //   {" "}
-          //   <input
-          //     id="mycheckbox"
-          //     onClick={() => this.getNowPlaying()}
-          //     type="checkbox"
-          //   />
-          //   <label htmlFor="mycheckbox" />
-          // </React.Fragment>
-          <br />
+          <React.Fragment>
+            {" "}
+            <input
+              id="mycheckbox"
+              onClick={() => this.getNowPlaying()}
+              type="checkbox"
+            />
+            <label htmlFor="mycheckbox" />
+          </React.Fragment>
         )}
         {!this.state.loggedIn && (
-          <a   style={{ textDecoration: "none", width: "150px" }} className="button" href="http://ariczhuang.ddns.net:8888/login">
-            Connect your Spotify
-          </a>
+          <a href="http://arcizhuang.ddns.net:8888/login">Connect your Spotify</a>
         )}
         <div>
           {this.state.nowPlaying.name}
@@ -247,21 +242,14 @@ class Lyrics extends Component {
           <div
             className="image-shadow js-tilt-container"
             style={{
-              backgroundImage: "url(" + backgroundUrl+  ")"
+              backgroundImage: "url(" + this.state.nowPlaying.albumArt + ")"
             }}
           >
             <br />
             <br />
           </div>
         </div>
-        <div>
-        {!Array.isArray(lyrics) || !lyrics.length ? (
-  <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif"/></div>
-) : (
-  <div>Lyrics: {lyrics}</div>
-)}
-        </div>
-
+        <div>Lyrics: {lyrics}</div>
         <br />
       </div>
     );

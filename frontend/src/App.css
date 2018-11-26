@@ -91,6 +91,7 @@ label::after {
   position: relative;
 }
 
+
 @keyframes loading-background {
   from {
     height: 0;

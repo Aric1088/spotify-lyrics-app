@@ -4,7 +4,7 @@ class Stream extends Component {
   constructor() {
     super();
     this.play = this.play.bind(this);
-    this.host = "ariczhuang.ddns.net:80";
+    this.host = "ariczhuang.ddns.net:9900";
     this.state = {
       isPlaying: false,
       icon: "fa fa-play fa-2x",
@@ -40,7 +40,7 @@ class Stream extends Component {
       this.setState({
         isPlaying: false,
         icon: "fa fa-play fa-2x",
-        marginLeft: "12px"
+        marginLeft: "12x"
       });
     } else {
       var e = document.getElementById("background");
@@ -57,18 +57,22 @@ class Stream extends Component {
   }
   render() {
     return (
-      <div id="a">
+      <div style={{textAlign: "center"}}>
         <audio id="background">
           <source src="" preload="none" type="audio/mpeg" />
         </audio>
+        <br />
+        <br />
+        <br />
+        <br />
         <button
-          className="round-button"
+          className="button"
           id="player"
           onClick={() => this.play()}
         >
           <i
             className={this.state.icon}
-            style={{ fontSize: "100px", marginLeft: this.state.marginLeft }}
+            style={{ fontSize: "80px", marginLeft: this.state.marginLeft }}
           />
         </button>
       </div>
