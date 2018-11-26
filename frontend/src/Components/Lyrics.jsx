@@ -48,6 +48,7 @@ class Lyrics extends Component {
         ) {
           this.getNowPlaying();
           this.setState({
+            loggedIn: this.token ? true : false,
             nowPlaying: {
               name: response.item.name,
               artist: response.item.artists[0].name,
@@ -57,12 +58,13 @@ class Lyrics extends Component {
                   : "",
               total_time: response.item.duration_ms,
               time_left: response.item.duration_ms - response.progress_ms,
-              lyrics: []
+              lyrics: [""]
             }
           });
         } else {
           const { name, artist, total_time, lyrics } = this.state.nowPlaying;
           this.setState({
+                      loggedIn: this.token ? true : false,
             nowPlaying: {
               name: name,
               artist: artist,
@@ -79,6 +81,7 @@ class Lyrics extends Component {
       } else {
         const { artist, albumArt, total_time, lyrics } = this.state.nowPlaying;
         this.setState({
+          loggedIn: this.token ? true : false,
           nowPlaying: {
             name: "Nothing is Playing",
             artist: artist,
@@ -181,6 +184,7 @@ class Lyrics extends Component {
             var parsed = data.lyrics.song_lyrics.split("\n");
 
             this.setState({
+              loggedIn: this.token ? true : false,
               nowPlaying: {
                 name: response.item.name,
                 artist: response.item.artists[0].name,
@@ -210,19 +214,10 @@ class Lyrics extends Component {
     const backgroundUrl = (this.state.nowPlaying.albumArt === "") ? "https://i.imgur.com/eHsIsuU.gif" : this.state.nowPlaying.albumArt
     return (
       <div className="Lyrics">
-        {this.state.loggedIn && (
-          // <React.Fragment>
-          //   {" "}
-          //   <input
-          //     id="mycheckbox"
-          //     onClick={() => this.getNowPlaying()}
-          //     type="checkbox"
-          //   />
-          //   <label htmlFor="mycheckbox" />
-          // </React.Fragment>
-          <br />
-        )}
-        {!this.state.loggedIn && (
+
+        {(!(this.state.loggedIn
+         || (Array.isArray(lyrics) && lyrics.length)
+         ))&& (
           <a   style={{ textDecoration: "none", width: "150px" }} className="button" href="http://ariczhuang.ddns.net:8888/login">
             Connect your Spotify
           </a>
@@ -255,7 +250,7 @@ class Lyrics extends Component {
           </div>
         </div>
         <div>
-        {!Array.isArray(lyrics) || !lyrics.length ? (
+        {lyrics.length === 1 ? (
   <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif"/></div>
 ) : (
   <div>Lyrics: {lyrics}</div>
