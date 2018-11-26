@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/spotify-lyrics-app/static/js/runtime~main.99e45770.js"
   },
   {
-    "revision": "98138ef51fe2e110663e",
-    "url": "/spotify-lyrics-app/static/js/main.98138ef5.chunk.js"
+    "revision": "2afad0602655971b9f1a",
+    "url": "/spotify-lyrics-app/static/js/main.2afad060.chunk.js"
   },
   {
     "revision": "064e8b68d0e3c5023efa",
     "url": "/spotify-lyrics-app/static/js/1.064e8b68.chunk.js"
   },
   {
-    "revision": "98138ef51fe2e110663e",
+    "revision": "2afad0602655971b9f1a",
     "url": "/spotify-lyrics-app/static/css/main.8dac7fcd.chunk.css"
   },
   {
-    "revision": "71613bb075e1e9ed2ffdcdf9774b06d5",
+    "revision": "057d72592a847dcbee4fe9fd4fc6a28e",
     "url": "/spotify-lyrics-app/index.html"
   }
 ];
