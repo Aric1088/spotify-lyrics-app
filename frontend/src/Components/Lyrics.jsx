@@ -204,8 +204,7 @@ class Lyrics extends Component {
   }
 
   render() {
-    const lyric = (this.state.nowPlaying.lyrics[0] === "1088") ? []: this.state.nowPlaying.lyrics ;
-    const lyrics = lyric.map(item =>
+    const lyrics = this.state.nowPlaying.lyrics.map(item =>
       item === "" ? (
         <br key={item.uniqueId} />
       ) : (
@@ -216,8 +215,8 @@ class Lyrics extends Component {
     return (
       <div className="Lyrics">
 
-        {(!(this.state.loggedIn
-         || (this.state.nowPlaying.name !== "Nothing is Playing")
+        {(!(lyrics.length
+         || (this.state.nowPlaying.name === "Nothing is Playing")
          ))&& (
           <a   style={{ textDecoration: "none", width: "150px" }} className="button" href="http://ariczhuang.ddns.net:8888/login">
             Connect your Spotify
@@ -251,7 +250,7 @@ class Lyrics extends Component {
           </div>
         </div>
         <div>
-        {!lyrics.length? (
+        {this.state.nowPlaying.lyrics[0] === "1088"? (
   <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif"/></div>
 ) : (
   <div>Lyrics: {lyrics}</div>

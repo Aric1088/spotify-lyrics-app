@@ -19,6 +19,7 @@ const scrape_musixmatch = async (artist, song_name) => {
   }
 };
 const scrape_lyrics = async (song_name, artist) => {
+  song_name = song_name.split("feat")[0];
   const browser = await puppeteer.launch({headless: true});
   const page = await browser.newPage();
   console.log("Looking for\nArtist: " + artist + "\nSong: " + song_name);

@@ -1,7 +1,7 @@
 import React from "react";
 import Lyrics from "./Components/Lyrics";
 import Stream from "./Components/Stream";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import "./App.css";
 
 const App = () => (
@@ -10,29 +10,31 @@ const App = () => (
       <Header />
       <Route exact path="/" component={Lyrics} />
       <Route path="/lyrics" component={Lyrics} />
-      <Route path="/stream" component={Stream} />
+      // <Route path="/stream" component={Stream} />
     </div>
   </Router>
 );
 
 const Header = () => (
-  <div style={{textAlign: "center"}}>
-    <br />
-    <Link
+  <div style={{margin: "auto",textAlign: "center"}}>
+  <a class="button"   style={{ textDecoration: "none", width: "150px"}}href="https://github.com/Aric1088/spotify-lyrics-app" title="Github">GitHub</a>
+
+    <NavLink
       style={{ textDecoration: "none", width: "150px" }}
       className="button"
       to="/lyrics"
+      activeClassName="active-button"
     >
       My Lyrics
-    </Link>
-    <br />
-    <Link
+    </NavLink>
+    <NavLink
       style={{ textDecoration: "none", width: "150px" }}
       className="button"
       to="/stream"
+      activeClassName="active-button"
     >
       Radio Stream
-    </Link>
+    </NavLink>
   </div>
 );
 
