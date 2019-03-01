@@ -1,2 +1,5 @@
 node_modules/
 build/
+*.download
+backend/authorization_code/public/entirechathistoryapmawhomst.html
+backend/authorization_code/public/entirechathistoryapmawhomst_files/*
