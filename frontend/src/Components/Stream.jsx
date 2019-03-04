@@ -10,7 +10,7 @@ class Stream extends Component {
       icon: "fa fa-play fa-2x",
       marginLeft: "12px"
     };
-    this.createVisualization = this.createVisualization.bin(this);
+    this.createVisualization = this.createVisualization.bind(this);
   }
 
   componentDidMount() {
